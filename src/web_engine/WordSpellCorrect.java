@@ -11,12 +11,13 @@ import java.util.TreeSet;
 import library.Trie;
 import library.TrieNode;
 public class WordSpellCorrect {
-	private static final String DIR_PATH = "src/WebPagesToText";
+	private static final String DIR_PATH = "src/WebPagesInText";
 	Trie trie = new Trie();
 	Map<String, Integer> CountWord = new HashMap<>(); // creating a hash map - CountWord
 	public void loadSpell_Correct() { // https://stackabuse.com/java-list-files-in-a-directory/
 		File file = new File(DIR_PATH);
 		File[] files_list = file.listFiles(); // using a File class as an array
+		
 		for (int i = 0; i < files_list.length; i++) { // iterate through each file
 			if (files_list[i].isFile()) { // check if specified file is present or not
 				try {

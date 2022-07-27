@@ -8,97 +8,96 @@ import java.util.regex.Pattern;
 public class WebSearchApplication {
 
 	public static void main(String[] args) throws IOException {
-		WordSpellCorrect corrector;
+		WordSpellCorrect o_corrector;
 
 		while (true) {
-			System.out.println("Please choose an option from the list below");
-			System.out.println("Choose 1 : Search a url (Web Crawling)");
-			System.out.println("Choose 2 : Delete cache");
-			System.out.println("Choose 3 : Rank the web pages according to the occurence of a word");
-			System.out.println("Choose 4 : Auto-Correct (Words Suggestion)");
-			System.out.println("Choose 5 : Auto-Complete");
-			System.out.println("Choose 6 : Word Frequency");
-			System.out.println("Choose 7 : Exit from program");
+			System.out.println("Please choose one of the options from the given list");
+			System.out.println("Enter 1 if : Searching a URL (Web Crawling)");
+			System.out.println("Enter 2 if : Deleting Cache");
+			System.out.println("Enter 3 if:  Ranking web pages according to the occurence of a partiuclar word");
+			System.out.println("Enter 4 if : Auto-Correct (Words Suggestions)");
+			System.out.println("Enter 5 if : Auto-Complete");
+			System.out.println("Enter 6 if:  Frequency of a word computation");
+			System.out.println("Enter 7 if : Program EXIT");
 
-			Scanner sc = new Scanner(System.in);
-			System.out.println("Please enter your choice");
-			int choice = sc.nextInt();
-			sc = new Scanner(System.in);
-			if (choice == 7) {
-				System.out.println("Program is terminated!!");
+			Scanner o_sc = new Scanner(System.in);
+			System.out.println("Enter the choice");
+			int c_choice = o_sc.nextInt();
+			o_sc = new Scanner(System.in);
+			if (c_choice == 7) {
+				System.out.println("Program gets terminated!!!!!");
 				break;
 			}
 
-			switch (choice) {
+			switch (c_choice) {
 			case 0:
-				System.out.println("please select a valid number");
+				System.out.println("Select a valid number please");
 				break;
 
 			case 1:
-				System.out.println("Please enter the url to be searched");
-				String url = sc.nextLine();
-					System.out.println("Please enter the depth");
-				int depth = sc.nextInt();
-					System.out.println("Please enter the total number of links");
-				int max = sc.nextInt();
+				System.out.println("Kindly enter the url that you want to search");
+				String url = o_sc.nextLine();
+					System.out.println("Enter the depth please");
+				int depth = o_sc.nextInt();
+					System.out.println("Enter the total number of links please");
+				int maximum = o_sc.nextInt();
 				if (isValidUrl(url)) {
-					if (!CacheManager.isAvailable(url)) {
-						WCrawler wc = new WCrawler(url, depth, max);
+					if (!Cache_Manage.Is_URL_Available(url)) {
+						WCrawler o_wc = new WCrawler(url, depth, maximum);
 
 					} else {
-						System.out.println("This URL has already been crawled.");
+						System.out.println("This particular URL has been crawled already.");
 					}
 
 				} else {
-					System.out.println("Please enter a valid url");
+					System.out.println("Enter a valid URL PLEASE");
 				}
 
 				break;
 
 			case 2:
-				CacheManager.deleteCache();
+				Cache_Manage.Delete_Cache();
 				break;
 
 			case 3:
-				System.out.println("Please enter a word to be searched");
+				System.out.println("Kindly enter a word that you want to search.");
 				FindingWord.readAllFiles();
 				break;
 
 			case 4:
-				System.out.println("Please enter a word");
+				System.out.println("Kindly enter a word");
 
-				String sSearch = sc.nextLine();
-				corrector = new WordSpellCorrect();
+				String s_Search = o_sc.nextLine();
+				o_corrector = new WordSpellCorrect();
 
-				corrector.loadSpell_Correct();
-				String suggestion = corrector.findSimilarWords(sSearch);
-				if (suggestion.length() == 0)
-					System.out.println("There are no similar words. Please enter the valid word to search");
+				o_corrector.loadSpell_Correct();
+				String o_suggestion = o_corrector.findSimilarWords(s_Search);
+				if (o_suggestion.length() == 0)
+					System.out.println("There are no such words present. Kindly enter a valid word to search");
 				else
-					System.out.println("Suggestion: " + suggestion);
+					System.out.println("Suggestions: " + o_suggestion);
 
 				break;
 
 			case 5:
-				System.out.println("Please enter a word to Autocomplete");
-				String sSearch1 = sc.nextLine();
-				corrector = new WordSpellCorrect();
+				System.out.println("Kindly enter a word which you want to Autocomplete");
+				String o_Search = o_sc.nextLine();
+				o_corrector = new WordSpellCorrect();
 
-				corrector.loadSpell_Correct();
-				ArrayList suggestion1 = corrector.autocomplete(sSearch1);
-				System.out.println(suggestion1.toString());
+				o_corrector.loadSpell_Correct();
+				ArrayList<String> o_suggestion1 = o_corrector.autocomplete(o_Search);
+				System.out.println(o_suggestion1.toString());
 
 				break;
 				
 			case 6:
-				System.out.println("Please enter a word to get its frequency::");
-				String workForFrequency = sc.nextLine();
-				WordFrequency wf = new WordFrequency();
-				wf.findFrequency(workForFrequency);
+				System.out.println("Enter a word whose frequency you want to Compute::");
+				String Work_f_Frequency = o_sc.nextLine();
+				Frequency_word.Find_frequency(Work_f_Frequency);
 				break;
 
 			default:
-				System.out.println("Please select a valid number");
+				System.out.println("Kindly select a valid number from above given options");
 				break;
 			}
 		}
