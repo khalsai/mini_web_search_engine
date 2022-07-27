@@ -56,7 +56,7 @@ public class HTMLtoTextConvertor {
 		if (!f.exists()) {
 			f.createNewFile();
 		}
-		CacheManager.addcache(htmlURL + " " + fileName + ".txt");
+		Cache_Manage.Add_Cache(htmlURL + " " + fileName + ".txt");
 
 		String text = doc.text();
 		// initialize the print writer object

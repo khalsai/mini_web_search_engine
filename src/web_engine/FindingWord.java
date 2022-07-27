@@ -39,11 +39,12 @@ public class FindingWord {
 	 * @throws IOException
 	 *
 	 */
+	@SuppressWarnings("removal")
 	public static void readAllFiles() throws IOException {
 		// create instance of directory
 		File fileDirctry = new File(DIRECTORY_PATH);
 		Scanner scannr_Input = new Scanner(System.in);
-		WordFrequency wrdfrq = new WordFrequency();
+		Frequency_word wrdfrq = new Frequency_word();
 
 		String Restart_arr;
 
@@ -66,7 +67,7 @@ public class FindingWord {
 				File currfile = new File(namedtheFile);
 				if (currfile.exists() && currfile.isFile() && currfile.canRead()) {
 					Path file_Path = Paths.get(namedtheFile);
-					hashMapping.put(file_Path.getFileName().toString(), new Integer(wrdfrq.findFrequencyInAFile(file_Path, searchKeyword)));
+					hashMapping.put(file_Path.getFileName().toString(), Integer.valueOf(Frequency_word.Finding_Frequency_In_A_File(file_Path, searchKeyword)));
 
 				}
 			}

@@ -13,8 +13,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-//import web_engine.HTMLtoText;
-//import engine.WCrawler;
+import web_engine.HTMLtoTextConvertor;
+import web_engine.WCrawler;
 
 public class WCrawler implements Runnable {
 	private Thread thread;
@@ -89,7 +89,7 @@ public class WCrawler implements Runnable {
 				visit.put(url, title);
 				writeFile(title, document);
 
-		//		HTMLtoText.convertToTextFile(url);
+				HTMLtoTextConvertor.convertingToTextFile(url);
 				
 				return document;
 			}
