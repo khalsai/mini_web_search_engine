@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class WebSearchApplication {
 
 	public static void main(String[] args) throws IOException {
-		SpellCorrector corrector;
+		WordSpellCorrect corrector;
 
 		while (true) {
 			System.out.println("Please choose an option from the list below");
@@ -43,7 +43,7 @@ public class WebSearchApplication {
 				int max = sc.nextInt();
 				if (isValidUrl(url)) {
 					if (!CacheManager.isAvailable(url)) {
-						WebCrawler wc = new WebCrawler(url, depth, max);
+						WCrawler wc = new WCrawler(url, depth, max);
 
 					} else {
 						System.out.println("This URL has already been crawled.");
@@ -61,17 +61,17 @@ public class WebSearchApplication {
 
 			case 3:
 				System.out.println("Please enter a word to be searched");
-				FindWord.readAllFiles();
+				FindingWord.readAllFiles();
 				break;
 
 			case 4:
 				System.out.println("Please enter a word");
 
 				String sSearch = sc.nextLine();
-				corrector = new SpellCorrector();
+				corrector = new WordSpellCorrect();
 
-				corrector.loadSpellCorrector();
-				String suggestion = corrector.findSimilarWord(sSearch);
+				corrector.loadSpell_Correct();
+				String suggestion = corrector.findSimilarWords(sSearch);
 				if (suggestion.length() == 0)
 					System.out.println("There are no similar words. Please enter the valid word to search");
 				else
@@ -82,9 +82,9 @@ public class WebSearchApplication {
 			case 5:
 				System.out.println("Please enter a word to Autocomplete");
 				String sSearch1 = sc.nextLine();
-				corrector = new SpellCorrector();
+				corrector = new WordSpellCorrect();
 
-				corrector.loadSpellCorrector();
+				corrector.loadSpell_Correct();
 				ArrayList suggestion1 = corrector.autocomplete(sSearch1);
 				System.out.println(suggestion1.toString());
 
@@ -106,7 +106,7 @@ public class WebSearchApplication {
 	}
 
 	private static boolean isValidUrl(String url) {
-		if (Pattern.matches(WebCrawler.regex, url))
+		if (Pattern.matches(WCrawler.regexpglobal, url))
 			return true;
 		return false;
 	}
