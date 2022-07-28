@@ -57,7 +57,7 @@ public class Frequency_word {
 			HashMap<String, Integer> o_map = new HashMap<>();
 
 			String[] o_list = o_text.split(" ");
-			int initial = 0;
+			int initial = 1;
 			for (String o_st : o_list) {
 				String o_s = o_st.toLowerCase();
 

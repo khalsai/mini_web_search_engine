@@ -26,13 +26,16 @@ public class WCrawler implements Runnable {
 	private static int count = 0;
 	public static String regexpglobal = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
-	public WCrawler(String link, int maxlevel, int totalLink) {
+	public WCrawler(String link, int maxlevel, int totalLink) throws InterruptedException {
 		depth = maxlevel;
 		totalf = totalLink;
 		linktosearch = link;
 		thread = new Thread(this);
 
 		thread.start();
+				
+		
+		
 	}
 
 	@Override
@@ -84,7 +87,10 @@ public class WCrawler implements Runnable {
 			Document document = connection.get();
 
 			if (connection.response().statusCode() == 200) {
+				
+				System.out.println("***************************************************************************");
 				System.out.println(url);
+				System.out.println("***************************************************************************");
 				String title = document.title();
 				visit.put(url, title);
 				writeFile(title, document);
@@ -112,7 +118,7 @@ public class WCrawler implements Runnable {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		WCrawler wc = new WCrawler("https://uwindsor.ca/", 3, 11);
 		
 

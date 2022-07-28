@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class WebSearchApplication {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		WordSpellCorrect o_corrector;
 
 		while (true) {
@@ -15,17 +15,17 @@ public class WebSearchApplication {
 			System.out.println("Enter 1 if : Searching a URL (Web Crawling)");
 			System.out.println("Enter 2 if : Deleting Cache");
 			System.out.println("Enter 3 if:  Ranking web pages according to the occurence of a partiuclar word");
-			System.out.println("Enter 4 if : Auto-Correct (Words Suggestions)");
-			System.out.println("Enter 5 if : Auto-Complete");
-			System.out.println("Enter 6 if:  Frequency of a word computation");
+			System.out.println("Enter 4 if : Spell-Correct ");
+			System.out.println("Enter 5 if : Auto-Complete (Words Suggestions)");
+			System.out.println("Enter 6 if:  Word Computation Frequency");
 			System.out.println("Enter 7 if : Program EXIT");
 
 			Scanner o_sc = new Scanner(System.in);
-			System.out.println("Enter the choice");
+			System.out.println("Please enter the option you want to run ->");
 			int c_choice = o_sc.nextInt();
 			o_sc = new Scanner(System.in);
 			if (c_choice == 7) {
-				System.out.println("Program gets terminated!!!!!");
+				System.out.println("Program is terminating now!!!!!");
 				break;
 			}
 
@@ -35,11 +35,19 @@ public class WebSearchApplication {
 				break;
 
 			case 1:
+				
+				System.out.println("***************************************************************************");
 				System.out.println("Kindly enter the url that you want to search");
+				System.out.println("***************************************************************************");
+				
 				String url = o_sc.nextLine();
+				    System.out.println("***************************************************************************");
 					System.out.println("Enter the depth please");
+					System.out.println("***************************************************************************");
 				int depth = o_sc.nextInt();
+				    System.out.println("***************************************************************************");
 					System.out.println("Enter the total number of links please");
+					System.out.println("***************************************************************************");
 				int maximum = o_sc.nextInt();
 				if (isValidUrl(url)) {
 					if (!Cache_Manage.Is_URL_Available(url)) {
@@ -99,10 +107,11 @@ public class WebSearchApplication {
 			default:
 				System.out.println("Kindly select a valid number from above given options");
 				break;
-			}
+			
 		}
 
 	}
+}		
 
 	private static boolean isValidUrl(String url) {
 		if (Pattern.matches(WCrawler.regexpglobal, url))
